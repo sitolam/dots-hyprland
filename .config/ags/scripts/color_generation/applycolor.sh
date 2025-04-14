@@ -56,6 +56,8 @@ apply_fuzzel() {
   # Copy template
   mkdir -p "$CACHE_DIR"/user/generated/fuzzel
   cp "scripts/templates/fuzzel/fuzzel.ini" "$CACHE_DIR"/user/generated/fuzzel/fuzzel.ini
+  # Make sure cache permission
+  chmod 644 "$CACHE_DIR"/user/generated/fuzzel/fuzzel.ini
   # Apply colors
   for i in "${!colorlist[@]}"; do
     sed -i "s/{{ ${colorlist[$i]} }}/${colorvalues[$i]#\#}/g" "$CACHE_DIR"/user/generated/fuzzel/fuzzel.ini
@@ -73,6 +75,8 @@ apply_term() {
   # Copy template
   mkdir -p "$CACHE_DIR"/user/generated/terminal
   cp "scripts/templates/terminal/sequences.txt" "$CACHE_DIR"/user/generated/terminal/sequences.txt
+  # Make sure cache permission
+  chmod 644 "$CACHE_DIR"/user/generated/terminal/sequences.txt
   # Apply colors
   for i in "${!colorlist[@]}"; do
     sed -i "s/${colorlist[$i]} #/${colorvalues[$i]#\#}/g" "$CACHE_DIR"/user/generated/terminal/sequences.txt
@@ -96,6 +100,8 @@ apply_hyprland() {
   # Copy template
   mkdir -p "$CACHE_DIR"/user/generated/hypr/hyprland
   cp "scripts/templates/hypr/hyprland/colors.conf" "$CACHE_DIR"/user/generated/hypr/hyprland/colors.conf
+  # Make sure cache permission
+  chmod 644 "$CACHE_DIR"/user/generated/hypr/hyprland/colors.conf
   # Apply colors
   for i in "${!colorlist[@]}"; do
     sed -i "s/{{ ${colorlist[$i]} }}/${colorvalues[$i]#\#}/g" "$CACHE_DIR"/user/generated/hypr/hyprland/colors.conf
@@ -113,6 +119,8 @@ apply_hyprlock() {
   # Copy template
   mkdir -p "$CACHE_DIR"/user/generated/hypr/
   cp "scripts/templates/hypr/hyprlock.conf" "$CACHE_DIR"/user/generated/hypr/hyprlock.conf
+  # Make sure cache permission
+  chmod 644 "$CACHE_DIR"/user/generated/hypr/hyprlock.conf
   # Apply colors
   # sed -i "s/{{ SWWW_WALL }}/${wallpath_png}/g" "$CACHE_DIR"/user/generated/hypr/hyprlock.conf
   for i in "${!colorlist[@]}"; do
@@ -142,16 +150,15 @@ apply_gtk() { # Using gradience-cli
   # Copy template
   mkdir -p "$CACHE_DIR"/user/generated/gradience
   cp "scripts/templates/gradience/preset.json" "$CACHE_DIR"/user/generated/gradience/preset.json
-
+  # Make sure cache permission
+  chmod 644 "$CACHE_DIR"/user/generated/gradience/preset.json
   # Apply colors
   for i in "${!colorlist[@]}"; do
     sed -i "s/{{ ${colorlist[$i]} }}/${colorvalues[$i]}/g" "$CACHE_DIR"/user/generated/gradience/preset.json
   done
 
   mkdir -p "$XDG_CONFIG_HOME/presets" # create gradience presets folder
-  source $(eval echo $ILLOGICAL_IMPULSE_VIRTUAL_ENV)/bin/activate
   gradience-cli apply -p "$CACHE_DIR"/user/generated/gradience/preset.json --gtk both
-  deactivate
 
   # And set GTK theme manually as Gradience defaults to light adw-gtk3
   # (which is unreadable when broken when you use dark mode)

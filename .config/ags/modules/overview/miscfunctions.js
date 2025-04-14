@@ -81,7 +81,7 @@ export function launchCustomCommand(command) {
         execAsync([`bash`, `-c`, `systemctl suspend || loginctl suspend`]).catch(print);
     }
     else if (args[0] == '>logout') { // Log out
-        execAsync([`bash`, `-c`, `pkill Hyprland || pkill sway`]).catch(print);
+        execAsync([`printenv`, `XDG_SESSION_ID`]).then(out => execAsync([`bash`, `-c`, `loginctl kill-session ${out}`])).catch(print);
     }
 }
 
