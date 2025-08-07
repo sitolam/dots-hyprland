@@ -20,7 +20,7 @@ const scripts = [
     {
         icon: 'nixos-symbolic',
         name: getString('Update nixos configuration'),
-        command: `update`,
+        command: `update; exit`,
         enabled: distroID == 'nixos',
     },
     {
