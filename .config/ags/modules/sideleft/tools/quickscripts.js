@@ -24,6 +24,12 @@ const scripts = [
         enabled: distroID == 'nixos',
     },
     {
+        icon: 'keyboard-symbolic',
+        name: getString('Toggle kanata'),
+        command: `sudo systemctl is-active --quiet kanata-default.service && sudo systemctl stop kanata-default.service || sudo systemctl start kanata-default.service`,
+        enabled: true,
+    },
+    {
         icon: 'nixos-symbolic',
         name: getString('Trim system generations to 5'),
         command: `sudo ${App.configDir}/scripts/quickscripts/nixos-trim-generations.sh 5 0 system`,
