@@ -19,6 +19,12 @@ const scripts = [
     },
     {
         icon: 'nixos-symbolic',
+        name: getString('Update nixos configuration'),
+        command: `update`,
+        enabled: distroID == 'nixos',
+    },
+    {
+        icon: 'nixos-symbolic',
         name: getString('Trim system generations to 5'),
         command: `sudo ${App.configDir}/scripts/quickscripts/nixos-trim-generations.sh 5 0 system`,
         enabled: distroID == 'nixos',
