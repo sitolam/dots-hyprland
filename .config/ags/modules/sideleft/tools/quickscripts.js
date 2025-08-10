@@ -24,12 +24,6 @@ const scripts = [
         enabled: distroID == 'nixos',
     },
     {
-        icon: 'keyboard-symbolic',
-        name: getString('Toggle kanata'),
-        command: `toggle-kanata; exit`,
-        enabled: true,
-    },
-    {
         icon: 'nixos-symbolic',
         name: getString('Trim system generations to 5'),
         command: `sudo ${App.configDir}/scripts/quickscripts/nixos-trim-generations.sh 5 0 system`,
