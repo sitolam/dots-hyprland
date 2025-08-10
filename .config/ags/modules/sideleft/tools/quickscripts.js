@@ -26,7 +26,7 @@ const scripts = [
     {
         icon: 'keyboard-symbolic',
         name: getString('Toggle kanata'),
-        command: `sudo systemctl is-active --quiet kanata-default.service && ( sudo systemctl stop kanata-default.service; notify-send -a 't1' -i "dialog-information" "Kanata off" ) || ( sudo systemctl start kanata-default.service; notify-send -a 't1' -i "dialog-information" "Kanata on" ) ; exit`,
+        command: `toggle-kanata; exit`,
         enabled: true,
     },
     {
